@@ -66,9 +66,7 @@ Use cases:
 
 This feature is heavely inspired by [Aspect Oriented Programming](https://en.wikipedia.org/wiki/Aspect-oriented_programming) although I don't think this is Aspect Oriented Programming per se but it carries a lot of similarities.
 
-[Analytics](http://artsy.github.io/blog/2014/08/04/aspect-oriented-programming-and-aranalytics/) is a kind of cross-cutting concerns because an analytics strategy necessarily affects every part of the system. Analytics thereby crosscuts all classes and methods.
-
-This feature is build to work at compile time like Codable and SE-0185 Synthesizing Equatable and Hashable conformance.
+This feature is build to work at compile time like Codable and Equatable and Hashable conformance([SE-0185](https://github.com/apple/swift-evolution/blob/master/proposals/0185-synthesize-equatable-hashable.md)).
 
 [Separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns) is a big common problem in programming that Aspect Oriented Programming help to reduce.
 
@@ -86,6 +84,8 @@ Aspect oriented programming is implemented in [many languages](https://en.wikipe
 Python decorator syntax https://www.python.org/dev/peps/pep-0318/ / https://wiki.python.org/moin/PythonDecorators
 
 ### Objective-C use of AOP
+
+[Analytics](http://artsy.github.io/blog/2014/08/04/aspect-oriented-programming-and-aranalytics/) is a kind of cross-cutting concerns because an analytics strategy necessarily affects every part of the system. Analytics thereby crosscuts all classes and methods.
 
 - http://artsy.github.io/blog/2014/08/04/aspect-oriented-programming-and-aranalytics/
 - http://petersteinberger.com/blog/2014/hacking-with-aspects/
@@ -158,7 +158,7 @@ Avantage vs Syntax 2 :
 
 ```swift
 
-@decorator(before|after|wrap, Selector) 
+@decorator(before|after|wrap, Class.AllFunction|Struct.AllFunction|Protocol.AllFunctionImplementation) 
 
 /// Example
 
