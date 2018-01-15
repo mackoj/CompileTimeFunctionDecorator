@@ -1,9 +1,3 @@
-Revoir la partie Motivation et Proposed Solution
-
-https://github.com/apple/swift-evolution/blob/master/proposals/0185-synthesize-equatable-hashable.md
-
----
-
 # Compile Time Function Decorator
 
 * Proposal: [SE-NNNN](NNNN-filename.md)
@@ -37,10 +31,6 @@ Traditional code tends to mix specific business code with cross cutting concerns
 Most of the time the cross cutting concerns are adding performance or error logging, manage access control or integrating third party SDKs and you really want to seek for separation and independence to those third party vendors calls.  
 
 ### Avantages
-
-
-
-
 
 The main advantages of this feature are:
 
