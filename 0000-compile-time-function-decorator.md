@@ -12,8 +12,8 @@
 single-paragraph "elevator pitch" so the reader understands what
 problem this proposal is addressing.
 
-This proposal aims at increasing code modularity by introducing some aspect oriented programming (AOP) traits to the Swift language. AOP helps to unclutter code that otherwise tends to mix business logics with [cross-cutting concerns](https://en.wikipedia.org/wiki/Cross-cutting_concern).
-Better separation could be achieved in Swift by injecting additional behaviour (code to be executed before or after some functions) at compile time into existing source code. This adds behaviours that are not central to the business logic to a program without cluttering the core code.
+This proposal aims at increasing code modularity by introducing some aspect-oriented programming (AOP) traits to the Swift language. AOP helps to unclutter code that otherwise tends to mix business logic with [cross-cutting concerns](https://en.wikipedia.org/wiki/Cross-cutting_concern).
+Better separation could be achieved in Swift by injecting additional behavior (code to be executed before or after some functions) at compile time into the existing source code. This adds behaviors that are not central to the business logic of a program without cluttering the core code.
 
 Swift-evolution thread: [Discussion thread topic for that proposal](https://lists.swift.org/pipermail/swift-evolution/)
 
@@ -26,9 +26,9 @@ drawbacks. If it's completely new functionality that cannot be
 emulated, motivate why this new functionality would help Swift
 developers create better Swift code.
 
-Traditional code tends to mix specific business code with cross cutting concerns like profiling, instrumentation, logging, security etc., ending up in cluttered code that gets complicated to understand or refactor. Using AOP based injection, the code could better isolate those cross cutting concerns from the business logic: the result is a better readable, maintainable code.  
+Traditional code tends to mix specific business code with cross-cutting concerns like profiling, instrumentation, logging, security etc., ending up in cluttered code that gets complicated to understand or refactor. Using AOP based injection, the code could better isolate those cross-cutting concerns from the business logic: the result is a better readable, maintainable code.  
 
-Most of the time the cross cutting concerns are adding performance or error logging, manage access control or integrating third party SDKs and you really want to seek for separation and independence to those third party vendors calls.  
+Most of the time the cross-cutting concerns are adding performance or error logging, manage access control or integrating third-party SDKs and you really want to seek separation and independence from those third-party vendors calls.  
 
 ### Avantages
 
