@@ -75,17 +75,18 @@ Python decorator syntax https://www.python.org/dev/peps/pep-0318/ / https://wiki
 how they work. Show how your solution is better than current
 workarounds: is it cleaner, safer, or more efficient?
 
-Have a way to instruct the compiler how to inject code into an already existing function.
+Teach the compiler how to insert code before/after and around a already existing function.
 
-In general, we propose that a function can have added code to it from an injector. We describe the specific conditions under which a function is augmented below, followed by the details of how the injector is implemented.
+We propose that a function can have added code to it from an injector. We describe the specific conditions under which a function is augmented below, followed by the details of how the injector is implemented.
 
 Introducing a new expression `@decorator` which inject code into a function. It can take parameter **before**, **after** and **wrap**.
 
+### Expected behaviour
+
 before | after | wrap
 --- | --- | ---
-injected code at the beginning of the target function | add a `defer` at the beginning of the function with injected code in it | replace the original function with a new one that will be called instead and call the original function by itself the return value of the original function can be used in this mode
+Injected code at the beginning of the target function | after the **before** using `defer` with injected code | be able to manipulate the input and the output of a target function by wrapping it in another function it will replace the original function with a new one that will be called instead and call the original function
 
-Adding a mechanism that allows us to insert code before/after and around a function will fix this issue. 
 
 The decorator function:
 
