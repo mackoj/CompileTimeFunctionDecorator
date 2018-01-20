@@ -39,6 +39,7 @@ Use cases:
 - assert pre- and post-conditions
 - add analytic metrics 
 - isolate calls to third-party code in a central place
+- add generic behaviour to code without modifing it like memoization
 
 ### Background
 
