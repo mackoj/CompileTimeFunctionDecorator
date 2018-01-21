@@ -246,7 +246,3 @@ Bar.swift
             print("bar is working...")
         }
     }
-
-## Criticism
- 
-It's the biggest advantage is its most significant weakness because with this feature it's harder to understand the flow of execution.
