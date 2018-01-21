@@ -35,7 +35,7 @@ Use cases:
 - assert pre- and post-conditions
 - add analytic metrics 
 - isolate calls to third-party code in a central place
-- add generic behaviour to code without modifing it like memoization
+- add generic behavior to code without modifying it like memoization
 
 ### Background
 
@@ -68,13 +68,13 @@ Python decorator syntax https://www.python.org/dev/peps/pep-0318/ / https://wiki
 
 ## Proposed solution
 
-Teach the compiler how to insert code before/after and around a already existing function.
+Teach the compiler how to insert code before/after and around an already existing function.
 
 We propose that a function can have added code to it from an injector. We describe the specific conditions under which a function is augmented below, followed by the details of how the injector is implemented.
 
 Introducing a new expression `@decorator` which inject code into a function. It can take parameter **before**, **after** and **wrap**.
 
-### Expected behaviour
+### Expected behavior
 
 **before** | **after** | **wrap**
 --- | --- | ---
@@ -114,9 +114,9 @@ I am not set on the syntax yet. It's pseudo code.
 
 ### Syntax 1 - More 🐍  like
 
-Pros againts syntax 2 :
+Pros against syntax 2 :
 
-- the priority of call is handle by the call order
+- the priority of calls is handled by the call order
 - simple
 - we can see where we inject code
 
@@ -153,9 +153,9 @@ func functionToDecorate(x : Int) -> Bool {
 
 ### Syntax 2 - More macro-ish like
 
-Pros againts syntax 1 :
+Pros against syntax 1 :
 
-- we don't need to modify the code were we do the injection
+- we don't need to modify the code where we do the injection
 - it's way more generic
 
 ```swift
@@ -191,7 +191,7 @@ class A {
 
 ## Source compatibility
 
-This is an additive proposal, existing code will continue to work.
+This is an additive proposal; existing code will continue to work.
 
 ## Effect on ABI stability
 
@@ -205,11 +205,11 @@ N/A.
 
 ### Using `precedence` name instead of `priority`
 
-`priority` seems to be better understood by non-english people. 
+`priority` seems to be better understood by non-English people. 
 
 ### Using `#selector` name instead of `#decorator`
 
-Using `#selector` was my first idea and it was a bad one because this does not do the same as the `#selector` and can be very confusing on what it try to achieve.
+Using `#selector` was my first idea, and it was a bad one because this does not do the same as the `#selector` and can be very confusing on what it tries to achieve.
 
 ### Not having a priority
 
@@ -217,9 +217,9 @@ The priority help to order the injection of those code blocks.
 
 ### Adding an @notdecorable
 
-This keyword can be used like @objc but this keyword prevent other to decorate your code.
+This keyword can be used like @objc, but this keyword prevents other to decorate your code.
 
-If someone try to decorate `importantWork()` he will receive a compiler error.
+If someone tries to decorate `importantWork()` he will receive a compiler error.
 
 Bar.swift
 
@@ -231,9 +231,9 @@ Bar.swift
 
 ### Adding an @decorable
 
-This keyword can be used like @objc but this keyword is necessary to allow other to decorate your code.
+This keyword can be used like @objc, but this keyword is necessary to allow other to decorate your code.
 
-Decoration only work on function with this decorator
+Decoration only work on function with this decorator.
 
 Bar.swift
 
