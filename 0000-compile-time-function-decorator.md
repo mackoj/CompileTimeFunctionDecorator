@@ -9,7 +9,7 @@ This document is a work in progress. There is no implementation at this time.
 This proposal aims at increasing code modularity by introducing some aspect-oriented programming (AOP) traits to the Swift language. AOP helps to unclutter code that otherwise tends to mix business logic with [cross-cutting concerns](https://en.wikipedia.org/wiki/Cross-cutting_concern).
 Better separation could be achieved in Swift by injecting additional behavior (code to be executed before or after some functions) at compile time into the existing source code. Thus adds code that is not central to the business logic of a program without cluttering the core code.
 
-Swift-evolution thread: [Discussion thread topic for that proposal](https://lists.swift.org/pipermail/swift-evolution/)
+The main difference with AOP is that AOP is dynamic and this is static at compile time.
 
 ## Motivation
 
@@ -26,8 +26,6 @@ The main advantages of this feature are:
 - increased productivity because it's easier to work on code in one central place rather than scattered over the project
 - easy adding of functionality like instrumentation, profiling, logging, debugging, access controls, etc. without having to dive deep into the business code
 - a warranty of execution even if the augmented function has complicated flows with several exit points
-
-Implementing this feature on compiler level has a significant advantage over applying it through a third-party framework. Native implementation will also avoid additional compile steps.
 
 Use cases:
 
@@ -82,15 +80,15 @@ Introducing a new expression `@decorator` which inject code into a function. It 
 
 ### Expected behaviour
 
-before | after | wrap
+**before** | **after** | **wrap**
 --- | --- | ---
-Injected code at the beginning of the target function | after the **before** using `defer` with injected code | be able to manipulate the input and the output of a target function by wrapping it in another function it will replace the original function with a new one that will be called instead and call the original function
+inject code at the beginning of the target function | after the **before** using `defer` with injected code | be able to manipulate the input and the output of a target function by wrapping it in another function it will replace the original function with a new one that will be called instead and call the original function
 
 
 The decorator function:
 
 - can be anywhere
-- can operate on any Swift function in a Class, Struct or Protocol
+- can operate on any Swift function in a Class, Struct or Protocol implementation
 - can only work on code that we have the source code of so it does not work on compiled library or frameworks
 - cannot work for getter et setter on protocol
 - we can inject **before**,**after** and **wrap** at the same time
@@ -116,23 +114,15 @@ The compiler will do most of the work so we will never have to see the generated
 
 ## Detailed design
 
-> Describe the design of the solution in detail. If it involves new
-syntax in the language, show the additions and changes to the Swift
-grammar. If it's a new API, show the full API and its documentation
-comments detailing what it does. The detail in this section should be
-sufficient for someone who is *not* one of the authors to be able to
-reasonably implement the feature.
+I am not set on the syntax yet. It's pseudo code.
 
-Trouver un moyen de proposer plusieurs syntax.
+### Syntax 1 - More 🐍  like
 
-### Syntax 1
+Pros againts syntax 2 :
 
-Avantage vs Syntax 2 :
-
-- La priorité est gérée par l'ordre d'appel
-- Simple
-- On voit on ou on injecte
-
+- the priority of call is handle by the call order
+- simple
+- we can see where we inject code
 
 ```swift
 
@@ -165,12 +155,12 @@ func functionToDecorate(x : Int) -> Bool {
 
 ```
 
-### Syntax 2
+### Syntax 2 - More macro-ish like
 
-Avantage vs Syntax 1 :
+Pros againts syntax 1 :
 
-- laisse intoucher le code ou on inject
-- est beaucoup plus generic
+- we don't need to modify the code were we do the injection
+- it's way more generic
 
 ```swift
 @decorator(before|after|wrap) where <Class.AllFunction|Struct.AllFunction|Protocol.AllFunctionImplementation> priority 1-255 { [unowned self], <function-expression-parameters>, originalFunction : (<function-expression-parameters>)->()) in
