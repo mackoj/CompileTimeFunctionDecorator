@@ -68,10 +68,6 @@ Python decorator syntax https://www.python.org/dev/peps/pep-0318/ / https://wiki
 
 ## Proposed solution
 
-> Describe your solution to the problem. Provide examples and describe
-how they work. Show how your solution is better than current
-workarounds: is it cleaner, safer, or more efficient?
-
 Teach the compiler how to insert code before/after and around a already existing function.
 
 We propose that a function can have added code to it from an injector. We describe the specific conditions under which a function is augmented below, followed by the details of how the injector is implemented.
@@ -106,7 +102,7 @@ The decorator feature needs to work:
 New Compiler error/warning :
 
 - raise an error when there is a conflict between the `priority`s and show where it has already been used
-- If the `function selector` does not found a function to inject into the compiler should emit a warning
+- if the `function selector` does not found a function to inject into the compiler should emit a warning
 - will emit an error if used in `wrap` mode and the function pass as the parameter is not used
 
 The compiler will do most of the work so we will never have to see the generated version of the code unless we go into the pre-process representation in Xcode.
