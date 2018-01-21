@@ -1,10 +1,8 @@
 # Compile Time Function Decorator
 
-* Proposal: [SE-NNNN](NNNN-filename.md)
-* Authors: [Jeffrey Macko](https://github.com/mackoj), [Author 2](https://github.com/swiftdev)
-* Review Manager: TBD
-* Status: **Awaiting implementation**
-* Implementation: [apple/swift#NNNNN](https://github.com/apple/swift/pull/NNNNN)
+* Authors: [Jeffrey Macko](https://github.com/mackoj)
+
+This document is a work in progress. There is no implementation at this time.
 
 ## Introduction
 
