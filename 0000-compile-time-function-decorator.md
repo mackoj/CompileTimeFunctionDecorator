@@ -2,18 +2,16 @@
 
 * Authors: [Jeffrey Macko](https://github.com/mackoj)
 
-This document is a work in progress. There is no implementation at this time.
-
 ## Introduction
 
 This proposal aims at increasing code modularity by introducing some aspect-oriented programming (AOP) traits to the Swift language. AOP helps to unclutter code that otherwise tends to mix business logic with [cross-cutting concerns](https://en.wikipedia.org/wiki/Cross-cutting_concern).
-Better separation could be achieved in Swift by injecting additional behavior (code to be executed before or after some functions) at compile time into the existing source code. Thus adds code that is not central to the business logic of a program without cluttering the core code.
+Better separation could be achieved in Swift by injecting additional behaviors (code to be executed before or after some functions) at compile time into the existing source code. Thus adding code that is not central to the business logic of a program without cluttering the core code.
 
 The main difference with AOP is that AOP is dynamic and this is static at compile time.
 
 ## Motivation
 
-Traditional code tends to mix specific business code with cross-cutting concerns like profiling, instrumentation, logging, security, etc., ending up in cluttered code that gets complicated to understand or refactor. Using AOP based injection, the code could better isolate those cross-cutting concerns from the business logic: the result is a better readable, maintainable code.  
+Traditional code tends to mix specific business code with cross-cutting concerns like profiling, instrumentation, logging, security, etc., ending up in cluttered code that is complicated to understand or refactor. Using AOP based injection, the code could better isolate those cross-cutting concerns from the business logic: the result is a better readable, maintainable code.  
 
 Most of the time the cross-cutting concerns are adding performance, error logging, managing access control or integrating third-party SDKs and you want to seek separation and independence from this code.  
 
@@ -24,7 +22,7 @@ The main advantages of this feature are:
 - a definite improvement for the developer is to improve focus on a single concern
 - readability and maintainability due to the separation of business logic code and cross-cutting concerns code
 - increased productivity because it's easier to work on code in one central place rather than scattered over the project
-- easy adding of functionality like instrumentation, profiling, logging, debugging, access controls, etc. without having to dive deep into the business code
+- easily adding functionalities like instrumentation, profiling, logging, debugging, access controls, etc. without having to dive deep into the business code
 - a warranty of execution even if the augmented function has complicated flows with several exit points
 
 Use cases:
@@ -72,7 +70,7 @@ Teach the compiler how to insert code before/after and around an already existin
 
 We propose that a function can have added code to it from an injector. We describe the specific conditions under which a function is augmented below, followed by the details of how the injector is implemented.
 
-Introducing a new expression `@decorator` which inject code into a function. It can take parameter **before**, **after** and **wrap**.
+Introducing a new expression `@decorator` which injects code into a function. It can take the parameters **before**, **after** and **wrap**.
 
 ### Expected behavior
 
@@ -90,19 +88,19 @@ The decorator function:
 - we can inject **before**,**after** and **wrap** at the same time
 - cannot work from a library
 
-The decorator feature needs to work:
+What the decorator feature needs to work:
 
-- need a way to operate (before|after|wrap)
-- need a way to hook onto another function that exists
-- need a priority of execution (optional by default the highest if more than two then propose a priority)
-- need `[unowned self]` to do stuff
-- need function original parameters `function-expression-parameters`
-- need the final function to call in wrap mode
+- a way to operate (before|after|wrap)
+- a way to hook onto another function that exists
+- a priority of execution (optional by default the highest if more than two then propose a priority)
+- `[unowned self]` to do stuff
+- a way to retrieve a function original parameters `function-expression-parameters`
+- the final function to call in wrap mode
 
 New Compiler error/warning :
 
 - raise an error when there is a conflict between the `priority`s and show where it has already been used
-- if the `function selector` does not found a function to inject into the compiler should emit a warning
+- if the `function selector` does not find a function to inject into, the compiler should emit a warning
 - will emit an error if used in `wrap` mode and the function pass as the parameter is not used
 
 The compiler will do most of the work so we will never have to see the generated version of the code unless we go into the pre-process representation in Xcode.
@@ -205,7 +203,7 @@ N/A.
 
 ### Using `precedence` name instead of `priority`
 
-`priority` seems to be better understood by non-English people. 
+`priority` seems to be better understood by non-native English speakers. 
 
 ### Using `#selector` name instead of `#decorator`
 
@@ -233,7 +231,7 @@ Bar.swift
 
 This keyword can be used like @objc, but this keyword is necessary to allow other to decorate your code.
 
-Decoration only work on function with this decorator.
+Decoration only works on function with this decorator.
 
 Bar.swift
 
